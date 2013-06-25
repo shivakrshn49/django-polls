@@ -1,0 +1,18 @@
+{% extends "polls/base.html" %}
+{% block content %}
+
+<h1 style='padding-left:120px;'>{{ poll.question }}</h1>
+
+<table border="0" align="center"  cellpadding="4" cellspacing="4"  width="80%"> 
+{% for choice in poll.choice_set.all %}
+  <tr > 
+   <td  width='70%'>	 
+    {{ choice.choice_text }}
+   </td>
+   <td width='30%'>{{ choice.votes }} vote{{ choice.votes|pluralize }}</td>
+  </tr> 
+{% endfor %}
+</table>
+
+<p style='padding-top:30px;padding-left:120px;' id='poll'><a id='an'  href="{% url 'polls:detail' poll.id %}">Vote again?</a> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<a id='an'  href="{% url 'polls:index' %}">List of polls</a></p>
+{% endblock %} 	
