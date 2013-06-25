@@ -5,6 +5,7 @@
 *~
 *#*
 *pydev*
+localsettings.py
 *.tmp*~
 *CACHE*
 media/
