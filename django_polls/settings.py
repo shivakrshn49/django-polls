@@ -148,7 +148,7 @@ LOGGING = {
     }
 }
 
-# try:
-#     from localsettings import *
-# except ImportError, e:
-#     print 'Unable to load localsettings.py:', e
+try:
+    from localsettings import *
+except ImportError, e:
+    print 'Unable to load localsettings.py:', e
