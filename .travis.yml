@@ -5,4 +5,5 @@ python:
 # command to install dependencies from a file
 install: "pip install -r requirements.txt --use-mirrors"
 
+# Command to run test for the app
 script: python manage.py test polls
