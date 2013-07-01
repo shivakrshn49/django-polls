@@ -3,11 +3,11 @@ from polls.models import Choice, Poll
 
 class ChoiceInline(admin.TabularInline):
     model = Choice
-    extra = 3
+    extra = 4
 
 class PollAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,               {'fields': ['question']}),
+        (None,               {'fields': ['question','poll_user']}),
         ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
     ]
     inlines = [ChoiceInline]
@@ -17,3 +17,4 @@ class PollAdmin(admin.ModelAdmin):
     date_hierarchy = 'pub_date'
 
 admin.site.register(Poll, PollAdmin)
+admin.site.register(Choice)

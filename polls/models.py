@@ -1,10 +1,13 @@
 from django.db import models
 import datetime
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 class Poll(models.Model):
+    poll_user = models.ForeignKey(User)
     question = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
+    
 
     def __unicode__(self):
     	return self.question
@@ -21,6 +24,7 @@ class Poll(models.Model):
 
 class Choice(models.Model):
     poll = models.ForeignKey(Poll)
+    choice_user = models.ForeignKey(User)
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
 
