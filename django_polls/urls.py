@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-
+from polls.views import VoteClassBasedView
 from django.contrib import admin
 admin.autodiscover()
 

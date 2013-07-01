@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, url
-
+from django.contrib.auth.decorators import login_required, permission_required
 from polls import views
+
 
 urlpatterns = patterns('',
     # ex: /polls/
@@ -12,8 +13,9 @@ urlpatterns = patterns('',
     # # ex: /polls/5/vote/
     # url(r'^(?P<poll_id>\d+)/vote/$', views.vote, name='vote'),
 
-    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^$', login_required(views.IndexView.as_view()), name='index'),
     url(r'^(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
     url(r'^(?P<pk>\d+)/results/$', views.ResultsView.as_view(), name='results'),
-    url(r'^(?P<poll_id>\d+)/vote/$', views.vote, name='vote'),
+    # url(r'^(?P<poll_id>\d+)/vote/$', views.vote, name='vote'),
+    url(r'^(?P<poll_id>\d+)/vote/$', views.VoteClassBasedView.as_view(), name='vote'),
 )
