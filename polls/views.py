@@ -6,8 +6,12 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from django.views.generic import View
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+# from django.utils.decorators import method_decorator
+# from django.contrib.auth import logout, login, authenticate
+# from django.contrib.auth.models import User
 
-
+#@login_required()
 # def index(request):
 #     latest_poll_list = Poll.objects.order_by('-pub_date')[:5]
 #     template = loader.get_template('polls/index.html')
@@ -31,6 +35,7 @@ from django.utils import timezone
 #     return render(request, 'polls/results.html', {'poll': poll})
 
 class IndexView(generic.ListView):
+    login_required = True
     template_name = 'polls/index.html'
     context_object_name = 'latest_poll_list'
 
@@ -81,6 +86,7 @@ class ResultsView(generic.DetailView):
 class VoteClassBasedView(View):
     "This is a clased based view for above vote general view"
 
+    # @method_decorator(login_required)
     def post(self, request,  poll_id=None, *args, **kwargs):
         p = get_object_or_404(Poll, pk=poll_id)
         try:

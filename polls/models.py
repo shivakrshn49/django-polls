@@ -4,9 +4,11 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 class Poll(models.Model):
-    poll_user = models.ForeignKey(User)
+    poll_user = models.ForeignKey(User, related_name="user_polls", null=True, blank=True)
     question = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
+    created = models.DateTimeField('created date', default = datetime.datetime.now())
+    updated = models.DateTimeField('updated date', auto_now=True)
     
 
     def __unicode__(self):

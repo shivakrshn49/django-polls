@@ -14,8 +14,8 @@ urlpatterns = patterns('',
     # url(r'^(?P<poll_id>\d+)/vote/$', views.vote, name='vote'),
 
     url(r'^$', login_required(views.IndexView.as_view()), name='index'),
-    url(r'^(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
-    url(r'^(?P<pk>\d+)/results/$', views.ResultsView.as_view(), name='results'),
+    url(r'^(?P<pk>\d+)/$', login_required(views.DetailView.as_view()), name='detail'),
+    url(r'^(?P<pk>\d+)/results/$', login_required(views.ResultsView.as_view()), name='results'),
     # url(r'^(?P<poll_id>\d+)/vote/$', views.vote, name='vote'),
-    url(r'^(?P<poll_id>\d+)/vote/$', views.VoteClassBasedView.as_view(), name='vote'),
+    url(r'^(?P<poll_id>\d+)/vote/$', login_required(views.VoteClassBasedView.as_view()), name='vote'),
 )

@@ -112,8 +112,11 @@ ROOT_URLCONF = 'django_polls.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'django_polls.wsgi.application'
 
+LOGIN_URL =  '/accounts/login/'
+
 TEMPLATE_DIRS = (
                 os.path.join(PROJECT_PATH,os.path.pardir,'templates'),
+                os.path.join(PROJECT_PATH,'../authentication/templates'),
     # '/home/agiliq/shiva/virtualenvironment/apps/django_polls/templates',
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
@@ -129,7 +132,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'polls',
-    'south' 
+    'south', 
+    'authentication',
 )
 
 # A sample logging configuration. The only tangible logging
