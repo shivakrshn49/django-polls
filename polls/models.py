@@ -36,3 +36,6 @@ class Vote(models.Model):
     user = models.ForeignKey(User, related_name="user_votes", null=True, blank=True)
     poll = models.ForeignKey(Poll)
     choice = models.ForeignKey(Choice, related_name='selected_choice')        
+
+    def __unicode__(self):
+        return self.poll.question 
