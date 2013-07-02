@@ -11,6 +11,5 @@ localsettings.py
 media/
 static/
 polls.db
-*migrations/
 
 
