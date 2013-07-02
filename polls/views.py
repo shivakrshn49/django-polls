@@ -60,10 +60,15 @@ class VoteClassBasedView(View):
             except Vote.DoesNotExist:
                 vote = Vote.objects.create(user=user, poll=poll,choice=selected_choice)
         except (KeyError, Choice.DoesNotExist):
-            return render_to_response('polls/detail.html', {'poll': p, 'error_message': "You didn't select a choice.",})
+            return render_to_response('polls/detail.html', {'poll': p, 'error_message': "You didn't select a choice."},context_instance=RequestContext(request))
         else:
             selected_choice.votes += 1
             selected_choice.save()
             return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
 
 
+
+def created_voted_by_me(request):
+    polls_by_loggedin_user = request.user.user_polls.all()
+    polls_voted_by_loggedin_user = [vote.poll.question for vote in Vote.objects.all()]
+    return render_to_response('polls/created_voted_by_me.html', {'polls_by_loggedin_user': polls_by_loggedin_user, 'polls_voted_by_loggedin_user': polls_voted_by_loggedin_user},context_instance=RequestContext(request))
