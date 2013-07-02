@@ -4,6 +4,7 @@
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
     <title>Poll App</title>
+    <a style="padding-left:1200px;" href="{% url 'auth_required:logout' %}">Logout</a>
 </head>
 
 <body>

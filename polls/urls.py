@@ -9,5 +9,5 @@ urlpatterns = patterns('',
     url(r'^(?P<pk>\d+)/results/$', login_required(views.ResultsView.as_view()), name='results'),
     # url(r'^(?P<poll_id>\d+)/vote/$', views.vote, name='vote'),
     url(r'^(?P<poll_id>\d+)/vote/$', login_required(views.VoteClassBasedView.as_view()), name='vote'),
-    url(r'^created_voted_by_me/$', views.created_voted_by_me, name='authentication_required')
+    url(r'^created_voted_by_me/$', views.created_voted_by_me, name='polls_created_by_me')
 )

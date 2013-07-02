@@ -7,17 +7,16 @@
     {% if polls_by_loggedin_user %}
 	    {% for poll in polls_by_loggedin_user %}
 		      <tr>
-		      	<tr><td></td><td></td></tr>
-		        <td>  
+		        <td title="Click here to view the votes">  
 		        	{{forloop.counter}}&nbsp; &nbsp; &nbsp;<a href="{% url 'polls:results' poll.id %}">{{ poll.question }}</a>
 		        </td>
 		        {% if poll.question in polls_by_loggedin_user%}
 			        <td>
-		                <a href="{% url 'polls:detail' poll.id%}">voted / Vote Again ?</a>
+		                <a href="{% url 'polls:detail' poll.id%}" title="voted / Vote Again ?">voted / Vote Again ?</a>
 			        </td>
 			     {% else %}   
 			        <td>
-		                <a href="{% url 'polls:detail' poll.id%}">Not voted / Vote here</a>
+		                <a href="{% url 'polls:detail' poll.id%}" title="Not voted / Vote ">Not voted / Vote here</a>
 			        </td>
 		        {% endif %}
 	          </tr>
