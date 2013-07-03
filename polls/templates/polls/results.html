@@ -1,4 +1,5 @@
 {% extends "polls/base.html" %}
+{% block title %}Votes{% endblock %}
 {% block content %}
 
 <h1 style='padding-left:120px;'>{{ poll.question }}</h1>
@@ -16,7 +17,5 @@
 
 <p style='padding-top:30px;padding-left:120px;' id='poll'>
 	    <a id='an'  href="{% url 'polls:detail' poll.id %}"><b>Vote again?</b></a> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-	    <a id='an'  href="{% url 'polls:index' %}"><b>List of polls</b></a>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-	    <a id='an'  href="{% url 'polls:polls_created_by_me' %}"><b>Polls Created By Me</b></a>
 </p>
 {% endblock %} 	

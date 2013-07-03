@@ -1,16 +1,16 @@
 {% extends 'polls/base.html' %}
 
 {% block content %} 
- <h1>List of Polls</h1>
+ <h1>Polls Created By Me</h1>
+ {% if polls_by_loggedin_user %}
 <table border="0" align="center"  cellpadding="4" cellspacing="4"  width="80%"> 
     <tr><td><b><u>Poll Name</u></b></td><td><u><b>Voted / Not Voted</b></u></td></tr>
-    {% if polls_by_loggedin_user %}
 	    {% for poll in polls_by_loggedin_user %}
 		      <tr>
 		        <td title="Click here to view the votes">  
 		        	{{forloop.counter}}&nbsp; &nbsp; &nbsp;<a href="{% url 'polls:results' poll.id %}">{{ poll.question }}</a>
 		        </td>
-		        {% if poll.question in polls_by_loggedin_user%}
+		        {% if poll.question in polls_voted_by_loggedin_user%}
 			        <td>
 		                <a href="{% url 'polls:detail' poll.id%}" title="voted / Vote Again ?">voted / Vote Again ?</a>
 			        </td>

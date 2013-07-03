@@ -1,6 +1,6 @@
 {% extends "polls/base.html" %}
+{% block title %}List of Polls{% endblock %}
 {% block content %}
-    <a style="padding-left:1000px;" href="{% url 'polls:polls_created_by_me' %}">Polls Created by me</a>
     <h1>List of Polls</h1>
 	{% if latest_poll_list %}
 	    <table border="0" align="left"  cellpadding="1" cellspacing="1"  width="70%"> 
@@ -17,5 +17,4 @@
 	{% else %}
 	    <p>No polls are available.</p>
 	{% endif %}
-
 {% endblock %} 

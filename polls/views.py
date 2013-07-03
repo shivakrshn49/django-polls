@@ -67,7 +67,7 @@ class VoteClassBasedView(View):
             return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
 
 
-
+@login_required
 def created_voted_by_me(request):
     polls_by_loggedin_user = request.user.user_polls.all()
     polls_voted_by_loggedin_user = [vote.poll.question for vote in Vote.objects.all()]

@@ -38,4 +38,4 @@ class Vote(models.Model):
     choice = models.ForeignKey(Choice, related_name='selected_choice')        
 
     def __unicode__(self):
-        return self.poll.question 
+        return self.poll.question + '::::' + self.choice.choice_text
