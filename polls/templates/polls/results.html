@@ -2,9 +2,8 @@
 {% block title %}Votes{% endblock %}
 {% block content %}
 
-<h1 style='padding-left:120px;'>{{ poll.question }}</h1>
-
-<table border="0" align="center"  cellpadding="4" cellspacing="4"  width="80%"> 
+<h1>{{ poll.question }}</h1>
+<table class="table table-hover " border="0" align="center"  cellpadding="4" cellspacing="4"  width="80%"> 
 {% for choice in poll.choice_set.all %}
   <tr > 
    <td  width='70%'>	 
@@ -15,7 +14,7 @@
 {% endfor %}
 </table>
 
-<p style='padding-top:30px;padding-left:120px;' id='poll'>
-	    <a id='an'  href="{% url 'polls:detail' poll.id %}"><b>Vote again?</b></a> &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+<p>
+    <a  href="{% url 'polls:detail' poll.id %}"><b>Vote again?</b></a>
 </p>
 {% endblock %} 	

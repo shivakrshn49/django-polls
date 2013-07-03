@@ -1,10 +1,10 @@
 {% extends 'polls/base.html' %}
-
+{% block title %}Polls Created By Me{% endblock %}
 {% block content %} 
  <h1>Polls Created By Me</h1>
  {% if polls_by_loggedin_user %}
-<table border="0" align="center"  cellpadding="4" cellspacing="4"  width="80%"> 
-    <tr><td><b><u>Poll Name</u></b></td><td><u><b>Voted / Not Voted</b></u></td></tr>
+<table class="table" border="0" align="center"  cellpadding="4" cellspacing="4"  width="80%"> 
+    <tr><td><b>Poll Name</b></td><td><b>Voted / Not Voted</b></td></tr>
 	    {% for poll in polls_by_loggedin_user %}
 		      <tr>
 		        <td title="Click here to view the votes">  

@@ -3,31 +3,38 @@
 {% block head %}
   <title>Login</title>
 {% endblock %}
-
+{% block extrahead %}
+ <style type="text/css">
+  form.form-horizontal {padding-left: 260px;}
+  h1 {padding-top:100px;padding-left: 320px;}
+  </style>
+{% endblock %}
 {% block content %}
-  <header>
       <h1>Django Login Form</h1>
-  </header>
-  {% if form.errors %}
-      <p>Your username and password didn't match, please try again.</p>
-    {% endif %}
-    
+       <p>&nbsp;</p>
+        {% if form.errors %}
+          <p style="padding-left:320px;color:red;">Your username and password didn't match, please try again.</p>
+        {% endif %}
     <!-- <form method="post" action="/accounts/login/"> -->
-    <form method="post" action="{% url 'auth_required:login'%}">
+    <form method="post" action="{% url 'auth_required:login'%}" class="form-horizontal">
     	{% csrf_token %}
-      <p>
-        <label for="username">Username:</label>
-        {{ form.username }}
-      </p>
-      <p>
-        <label for="password">Password:</label>
-        {{ form.password }}
-      </p>
+      <div class="control-group">
+        <label class="control-label" for="username">Username</label>
+        <div class="controls">{{ form.username }}</div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="password">Password</label>
+        <div class="controls">{{ form.password }}</div>
+      </div>
       {% if next %}
         <input type="hidden" name="redirect_url" value="{{ next }}" />
       {% else %}
         <input type="hidden" name="next" value="/polls/" />
       {% endif %}
-      <input type="submit" value="login" />
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" value="login"  class="btn btn-primary" >Login</button>
+          </div>
+        </div>
     </form>
 {% endblock %}  
