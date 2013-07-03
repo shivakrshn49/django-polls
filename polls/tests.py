@@ -53,7 +53,7 @@ class PollViewTests(TestCase):
         If no polls exist, an appropriate message should be displayed.
         """
         response = self.client.get(reverse('polls:index'))
-        # self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No polls are available.")
         # self.assertQuerysetEqual(response.context['latest_poll_list'], [])    
 
@@ -75,7 +75,7 @@ class PollViewTests(TestCase):
         """
         create_poll(question="Future poll.", days=30)
         response = self.client.get(reverse('polls:index'))
-        # self.assertContains(response, "No polls are available.", status_code=200)
+        self.assertContains(response, "No polls are available.", status_code=200)
         # self.assertQuerysetEqual(response.context['latest_poll_list'], [])
 
     def test_index_view_with_future_poll_and_past_poll(self):
@@ -120,4 +120,4 @@ class PollIndexDetailTests(TestCase):
         """
         past_poll = create_poll(question='Past Poll.', days=-5)
         response = self.client.get(reverse('polls:detail', args=(past_poll.id,)))
-        # self.assertContains(response, past_poll.question, status_code=200)        
+        self.assertContains(response, past_poll.question, status_code=200)        
