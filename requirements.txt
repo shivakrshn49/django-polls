@@ -10,6 +10,7 @@ docopt==0.6.1
 gunicorn==17.5
 heroku==0.1.4
 ipython==0.13.2
+psycopg2==2.5.1
 python-coveralls==2.2.0
 python-dateutil==1.5
 requests==1.2.3

@@ -9,7 +9,6 @@ localsettings.py
 *.tmp*~
 *CACHE*
 media/
-static/
 polls.db
-
+build/
 

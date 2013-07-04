@@ -1,0 +1,19 @@
+h1 { color: green; padding-left:30px;}
+body {
+    background: white url("images/background.png") no-repeat right bottom;
+    background-color:#cccccc;
+}
+table {padding-left: 60px;}
+td {font: bold;color: blue;}
+a {font-size: 20px;text-decoration: none;color: blue;}
+form {padding-left: 60px;}
+form input[type=submit]{
+                background-color:#FE9900;
+                font-weight:bold;
+                font-family:Arial,Helvetica,sans-serif;
+                border:0px solid #000066;
+            }
+strong {padding-left:65px;}     
+a#an {font:bold;color:green;}  
+
+/* This is the file added in projects static folder */

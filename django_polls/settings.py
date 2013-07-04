@@ -172,8 +172,8 @@ try:
 except ImportError, e:
     print 'Unable to load localsettings.py:', e
 
-import dj_database_url
-DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
+# import dj_database_url
+# DATABASES = {'default': dj_database_url.config()}
 # DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
