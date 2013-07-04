@@ -172,10 +172,18 @@ try:
 except ImportError, e:
     print 'Unable to load localsettings.py:', e
 
-# import dj_database_url
-# DATABASES = {'default': dj_database_url.config()}
-# DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')    
 
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')    
-print os.getcwd()
+from os import environ
+from urlparse import urlparse
+
+if environ.has_key('DATABASE_URL'):
+    url = urlparse(environ['DATABASE_URL'])
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': url.path[1:],
+        'USER': url.username,
+        'PASSWORD': url.password,
+        'HOST': url.hostname,
+        'PORT': url.port,
+    }
