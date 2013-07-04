@@ -1,9 +1,11 @@
 # Django settings for django_polls project.
 
 DEBUG = True
+# DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 import os
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
+SITE_PATH = os.path.abspath(os.path.join(PROJECT_PATH, os.path.pardir))
 # print os.path.join(PROJECT_PATH,os.path.pardir,'templates')
 
 ADMINS = (
@@ -66,9 +68,10 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-# STATIC_ROOT = ''
-STATIC_ROOT = os.path.join(PROJECT_PATH,'../staticfiles')
-print STATIC_ROOT
+# STATIC_ROOT = ''STATIC_ROOT = os.path.join(PROJECT_PATH,'../staticfiles')
+
+STATIC_ROOT = os.path.join(SITE_PATH, 'assets')
+
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -76,6 +79,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    # os.path.join(PROJECT_PATH, 'staticfiles'),
             # os.path.join(PROJECT_PATH,'../static'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
@@ -99,6 +103,12 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.static',
+    'django.core.context_processors.request'
 )
 
 MIDDLEWARE_CLASSES = (
