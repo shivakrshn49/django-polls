@@ -51,14 +51,13 @@ class VoteClassBasedView(View):
         p = get_object_or_404(Poll, pk=poll_id)
         try:
             selected_choice = p.choice_set.get(pk=request.POST['choice'])
-            poll = Poll.objects.get(id=poll_id)
             user = request.user
             try:
-                voter = Vote.objects.get(user=user, poll=poll)
+                voter = Vote.objects.get(user=user, poll=p)
                 voter.choice = selected_choice
                 voter.save()
             except Vote.DoesNotExist:
-                vote = Vote.objects.create(user=user, poll=poll,choice=selected_choice)
+                vote = Vote.objects.create(user=user, poll=p,choice=selected_choice)
         except (KeyError, Choice.DoesNotExist):
             return render_to_response('polls/detail.html', {'poll': p, 'error_message': "You didn't select a choice."},context_instance=RequestContext(request))
         else:

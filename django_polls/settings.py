@@ -8,7 +8,7 @@ import os
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 SITE_PATH = os.path.abspath(os.path.join(PROJECT_PATH, os.path.pardir))
 # print os.path.join(PROJECT_PATH,os.path.pardir,'templates')
-
+USE_TZ = False
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -107,12 +107,6 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.static',
-    'django.core.context_processors.request'
-)
-
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -121,6 +115,14 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.static',
+    'django.core.context_processors.request',
+    'django.contrib.messages.context_processors.messages',
 )
 
 ROOT_URLCONF = 'django_polls.urls'
