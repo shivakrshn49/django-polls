@@ -13,7 +13,12 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('authentication.urls',namespace="auth_required")),
 )
 
+urlpatterns +=   staticfiles_urlpatterns()
 if not settings.DEBUG:
     urlpatterns += patterns('',
         (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
     )
+
+# urlpatterns += patterns('',
+#         (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+#     )    
