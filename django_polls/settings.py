@@ -1,6 +1,6 @@
 # Django settings for django_polls project.
 
-DEBUG = False
+DEBUG = True
 # DEBUG = False
 # TEMPLATE_DEBUG = DEBUG
 import os
