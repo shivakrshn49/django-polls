@@ -1,8 +1,8 @@
 # Django settings for django_polls project.
 
-DEBUG = True
+DEBUG = False
 # DEBUG = False
-TEMPLATE_DEBUG = DEBUG
+# TEMPLATE_DEBUG = DEBUG
 import os
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 SITE_PATH = os.path.abspath(os.path.join(PROJECT_PATH, os.path.pardir))
