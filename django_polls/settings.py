@@ -1,7 +1,7 @@
 # Django settings for django_polls project.
 
-DEBUG = True
-# DEBUG = False
+# DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 import os
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
@@ -70,8 +70,8 @@ MEDIA_URL = ''
 # Example: "/var/www/example.com/static/"
 # STATIC_ROOT = ''STATIC_ROOT = os.path.join(PROJECT_PATH,'../staticfiles')
 
-STATIC_ROOT = ''
-# STATIC_ROOT = os.path.join(SITE_PATH, 'assets')
+# STATIC_ROOT = ''
+STATIC_ROOT = os.path.join(SITE_PATH, 'staticfiles')
 
 
 # URL prefix for static files.
@@ -80,7 +80,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    os.path.join(SITE_PATH, 'staticfiles'),
+    # os.path.join(SITE_PATH, 'staticfiles'),
             # os.path.join(PROJECT_PATH,'../static'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
