@@ -49,6 +49,10 @@ class VoteClassBasedView(View):
     # @method_decorator(login_required)
     def post(self, request,  poll_id=None, *args, **kwargs):
         p = get_object_or_404(Poll, pk=poll_id)
+        choice_objects_for_present_poll = p.choice_set.all()
+        for choice in choice_objects_for_present_poll:
+            choice.votes = 0
+            choice.save()
         try:
             selected_choice = p.choice_set.get(pk=request.POST['choice'])
             user = request.user
@@ -61,7 +65,7 @@ class VoteClassBasedView(View):
         except (KeyError, Choice.DoesNotExist):
             return render_to_response('polls/detail.html', {'poll': p, 'error_message': "You didn't select a choice."},context_instance=RequestContext(request))
         else:
-            selected_choice.votes += 1
+            selected_choice.votes = 1
             selected_choice.save()
             return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
 
@@ -69,5 +73,5 @@ class VoteClassBasedView(View):
 @login_required
 def created_voted_by_me(request):
     polls_by_loggedin_user = request.user.user_polls.all()
-    polls_voted_by_loggedin_user = [vote.poll.question for vote in Vote.objects.all()]
+    polls_voted_by_loggedin_user = request.user.user_votes.all()
     return render_to_response('polls/created_voted_by_me.html', {'polls_by_loggedin_user': polls_by_loggedin_user, 'polls_voted_by_loggedin_user': polls_voted_by_loggedin_user},context_instance=RequestContext(request))

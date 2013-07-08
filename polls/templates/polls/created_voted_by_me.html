@@ -1,28 +1,34 @@
 {% extends 'polls/base.html' %}
 {% block title %}Polls Created By Me{% endblock %}
 {% block content %} 
- <h1>Polls Created By Me</h1>
+ <h3>Polls Created By Me</h3>
  {% if polls_by_loggedin_user %}
 <table class="table" border="0" align="center"  cellpadding="4" cellspacing="4"  width="80%"> 
-    <tr><td><b>Poll Name</b></td><td><b>Voted / Not Voted</b></td></tr>
 	    {% for poll in polls_by_loggedin_user %}
 		      <tr>
 		        <td title="Click here to view the votes">  
 		        	{{forloop.counter}}&nbsp; &nbsp; &nbsp;<a href="{% url 'polls:results' poll.id %}">{{ poll.question }}</a>
 		        </td>
-		        {% if poll.question in polls_voted_by_loggedin_user%}
-			        <td>
-		                <a href="{% url 'polls:detail' poll.id%}" title="voted / Vote Again ?">voted / Vote Again ?</a>
-			        </td>
-			     {% else %}   
-			        <td>
-		                <a href="{% url 'polls:detail' poll.id%}" title="Not voted / Vote ">Not voted / Vote here</a>
-			        </td>
-		        {% endif %}
 	          </tr>
 	    {% endfor %}
 	{% else %}    
 	     <p>You have no polls</p>
 	{% endif %}     
-</table>    
+</table>   
+<h3>Polls Voted By Me</h3> 
+{% if polls_voted_by_loggedin_user %}
+<table class="table" border="0" align="center"  cellpadding="4" cellspacing="4"  width="80%"> 
+	<tr><td><b>Poll Name</b></td><td><b>Choice Selected</b></td></tr>
+	    {% for poll_choice in polls_voted_by_loggedin_user %}
+		      <tr>
+		        <td title="Click here to view the votes">  
+		        	{{forloop.counter}}&nbsp; &nbsp; &nbsp;{{ poll_choice.poll.question }}
+		        </td>
+		        <td>{{ poll_choice.choice.choice_text }}</td>
+	          </tr>
+	    {% endfor %}
+	{% else %}    
+	     <p>You have not voted any polls</p>
+	{% endif %}     
+</table>   
 {% endblock %} 
