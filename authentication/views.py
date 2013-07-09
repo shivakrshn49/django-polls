@@ -26,7 +26,6 @@ def login_poll(request):
                 	return HttpResponseRedirect(reverse('polls:index'))
                 else:
                     error_login = "Username or password does not match"
-    print dict(login_form.errors.viewitems())                
     return render_to_response("authentication/login.html", {'form': login_form, 'next': request.GET.get('next', ''),'errors':dict(login_form.errors.viewitems()),'error_login':error_login},
                               context_instance=RequestContext(request))    
 

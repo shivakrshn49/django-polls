@@ -35,7 +35,7 @@
           <a class="brand" href="/polls">Polls</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li><a href="{% url 'polls:polls_created_by_me' %}">Polls Created by me</a></li>
+              <li><a href="{% url 'polls:polls_created_by_me' %}">My Polls</a></li>
             </ul>
             {% if user.is_authenticated %}
             <div class="btn-group pull-right">

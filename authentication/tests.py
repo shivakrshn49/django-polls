@@ -27,3 +27,10 @@ class AuthenticationAppTestCase(TestCase):
     def test_logout(self):
     	response = self.c.get(reverse('auth_required:logout'))
     	self.assertEqual(302,response.status_code)
+
+
+    def test_register(self):
+        response = self.c.get(reverse('registration:register'))
+        self.assertEqual(200,response.status_code)
+        response = self.c.post(reverse('registration:register'),{'username':"wow", 'email':'wow@admin.com','password1':"hello",'password2':"hello", 'redirect_url': reverse('polls:index')})
+        self.assertEqual(302,response.status_code)

@@ -7,7 +7,7 @@
 	    {% for poll in polls_by_loggedin_user %}
 		      <tr>
 		        <td title="Click here to view the votes">  
-		        	{{forloop.counter}}&nbsp; &nbsp; &nbsp;<a href="{% url 'polls:results' poll.id %}">{{ poll.question }}</a>
+		        	{{forloop.counter}}&nbsp; &nbsp; &nbsp;<a href="{% url 'polls:detail' poll.id %}">{{ poll.question }}</a>
 		        </td>
 	          </tr>
 	    {% endfor %}
@@ -18,13 +18,14 @@
 <h3>Polls Voted By Me</h3> 
 {% if polls_voted_by_loggedin_user %}
 <table class="table" border="0" align="center"  cellpadding="4" cellspacing="4"  width="80%"> 
-	<tr><td><b>Poll Name</b></td><td><b>Choice Selected</b></td></tr>
+	<tr><td><b>Poll Name</b></td><td><b>Choice Selected</b></td><td><b>Total votes for the choice</b></td></tr>
 	    {% for poll_choice in polls_voted_by_loggedin_user %}
 		      <tr>
 		        <td title="Click here to view the votes">  
 		        	{{forloop.counter}}&nbsp; &nbsp; &nbsp;{{ poll_choice.poll.question }}
 		        </td>
 		        <td>{{ poll_choice.choice.choice_text }}</td>
+		        <td width='30%'>{{ poll_choice.choice.votes }} vote{{ choice.votes|pluralize }}</td>
 	          </tr>
 	    {% endfor %}
 	{% else %}    
