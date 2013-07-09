@@ -1,0 +1,61 @@
+{% extends "registration/base.html" %}
+{% load i18n %}
+{% block head %}
+  <title>Login</title>
+{% endblock %}
+{% block extrahead %}
+ <style type="text/css">
+  form.form-horizontal {padding-left: 260px;}
+  h1 {padding-top:20px;padding-left: 360px;}
+  div.errors {padding-left: 400px;}
+  span.help-inline {color:red;}
+  </style>
+{% endblock %}
+{% block content %}
+ <h1>Registration Form</h1>
+    <p>&nbsp;</p>
+	<form method="post" action="{% url 'registration:register' %}" class="form-horizontal">
+		{% csrf_token %}
+	    <div class="control-group">
+        	<label class="control-label" for="username">Username</label>
+            <div class="controls">{{ form.username }}
+            	{% if errors.username.0 %}
+            	   <span class="help-inline">{{ errors.username.0}}</span>
+            	{% endif %} 
+             </div>
+        </div>
+        <div class="control-group">
+	        <label class="control-label" for="email">E-mail</label>
+	        <div class="controls">{{ form.email }}
+	        	 {% if errors.email.0 %}
+		            	<span class="help-inline">{{ errors.email.0}}</span>
+	            {% endif %}
+	        </div>
+            
+        </div>
+        <div class="control-group">
+	        <label class="control-label" for="password1">Password</label>
+	        <div class="controls">{{ form.password1 }}
+	        	{% if errors.password1.0 %}
+		            	<span class="help-inline">{{ errors.password1.0}}</span>
+	            {% endif %} 
+	        </div>
+            
+        </div>
+        <div class="control-group">
+	        <label class="control-label" for="password2">Password (again)</label>
+	        <div class="controls">{{ form.password2 }}
+		        {% if errors.password2.0 %}
+			            	<span class="help-inline">{{ errors.password2.0}}</span>        
+	            {% endif %}
+
+	        </div>
+
+        </div>
+	        <div class="control-group">
+	          <div class="controls">
+	            <button type="submit" value="submit"  class="btn btn-primary" >Submit</button>
+	          </div>
+	        </div>
+	</form>
+{% endblock %}

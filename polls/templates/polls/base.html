@@ -17,9 +17,11 @@
     <style type="text/css">
       body{padding-top: 60px;}
     </style>
-    <script src="{{STATIC_URL}}bootstrap/js/jquery-1.8.1.min.js" type="text/javascript"></script
-    <script type="text/javascript">
-    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="{{STATIC_URL}}bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <!--<script src="{{STATIC_URL}}bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="{{STATIC_URL}}bootstrap/js/jquery-1.10.1.min.js" type="text/javascript"></script> -->
+    <script type="text/javascript"></script>
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
@@ -35,9 +37,20 @@
             <ul class="nav">
               <li><a href="{% url 'polls:polls_created_by_me' %}">Polls Created by me</a></li>
             </ul>
-            <ul class="nav pull-right">
+            {% if user.is_authenticated %}
+            <div class="btn-group pull-right">
+                <button class="btn">{{user.username}}</button>
+                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class= "btn-primary" href="{% url 'auth_required:logout' %}"><i class="icon-user icon-white"></i>&nbsp;&nbsp;Logout</a></li>  
+                </ul>
+            </div> 
+            <!--<ul class="nav pull-right">
                 <li><a class= "btn-primary" href="{% url 'auth_required:logout' %}"><i class="icon-user icon-white"></i>&nbsp;&nbsp;Logout</a></li>  
-            </ul>
+            </ul> -->
+            {% endif %}
           </div><!--/.nav-collapse -->
         </div>
       </div>

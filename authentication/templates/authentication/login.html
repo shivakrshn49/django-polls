@@ -6,25 +6,36 @@
 {% block extrahead %}
  <style type="text/css">
   form.form-horizontal {padding-left: 260px;}
-  h1 {padding-top:100px;padding-left: 320px;}
+  h1 {padding-top:100px;padding-left: 340px;}
+  span.help-inline {color:red;}
   </style>
 {% endblock %}
 {% block content %}
       <h1>Django Login Form</h1>
        <p>&nbsp;</p>
-        {% if form.errors %}
-          <p style="padding-left:320px;color:red;">Your username and password didn't match, please try again.</p>
-        {% endif %}
+        {% if error_login %}
+          <!--<p style="padding-left:320px;color:red;">Your username and password didn't match, please try again.</p> -->
+          <p style="padding-left:400px;color:red;">{{ error_login }}</p>
+        {% endif %} 
+        <p>&nbsp;</p>
     <!-- <form method="post" action="/accounts/login/"> -->
     <form method="post" action="{% url 'auth_required:login'%}" class="form-horizontal">
     	{% csrf_token %}
       <div class="control-group">
         <label class="control-label" for="username">Username</label>
-        <div class="controls">{{ form.username }}</div>
+        <div class="controls">{{ form.username }}
+              {% if errors.username.0 %}
+                 <span class="help-inline">{{ errors.username.0}}</span>
+              {% endif %} 
+        </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="password">Password</label>
-        <div class="controls">{{ form.password }}</div>
+        <div class="controls">{{ form.password }}
+              {% if errors.password.0 %}
+                 <span class="help-inline">{{ errors.password.0}}</span>
+              {% endif %} 
+        </div>
       </div>
       {% if next %}
         <input type="hidden" name="redirect_url" value="{{ next }}" />

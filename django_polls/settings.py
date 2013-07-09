@@ -143,6 +143,7 @@ TEMPLATE_DIRS = (
 
 INSTALLED_APPS = (
     'django.contrib.auth',
+    'django.contrib.humanize',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
@@ -152,6 +153,7 @@ INSTALLED_APPS = (
     'polls',
     'south', 
     'authentication',
+    # 'registration',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -203,3 +205,9 @@ if environ.has_key('DATABASE_URL'):
         'HOST': url.hostname,
         'PORT': url.port,
     }
+    
+ACCOUNT_ACTIVATION_DAYS=7
+EMAIL_HOST='localhost'
+EMAIL_PORT=1023
+EMAIL_HOST_USER='username'
+EMAIL_HOST_PASSWORD='password'

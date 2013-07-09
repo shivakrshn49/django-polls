@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {% load i18n %}
     {% load staticfiles %}
     <meta charset="utf-8">
-    <title>Polls | {% block title %}Login{% endblock %}</title>
+    <title>User | {% block title %}Registration{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -22,6 +23,7 @@
     {% block extrahead %}
     {% endblock %}
 </head>
+
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
@@ -36,12 +38,14 @@
             <ul class="nav">
               {# <li><a href="{% url 'polls:polls_created_by_me' %}">Polls Created by me</a></li> #}
             </ul>
+            {% if not user.is_authenticated %}
             <ul class="nav pull-right">
                 <li><a class= "btn-primary" href="{% url 'registration:register' %}"><i class="icon-user icon-white"></i>&nbsp;&nbsp;Signup</a></li>  
             </ul>
-            <ul class="nav pull-right">
-                <li><a class= "btn-primary" href="{% url 'auth_required:login' %}"><i class="icon-user icon-white"></i>&nbsp;&nbsp;Login</a></li>  
-            </ul>
+                <ul class="nav pull-right">
+                    <li><a class= "btn-primary" href="{% url 'auth_required:login' %}"><i class="icon-user icon-white"></i>&nbsp;&nbsp;Login</a></li>  
+                </ul>
+            {% endif %}    
           </div>
         </div>
       </div>
@@ -51,4 +55,5 @@
         {% endblock %}
     </div> <!-- /container -->
 </body>
+
 </html>
